@@ -3,11 +3,24 @@ package dev.yjyoon.novelist.ui.title
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Menu
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -104,7 +117,7 @@ fun TitleGraphic(
                 .blur(12.dp)
         )
         Text(
-            "내 작품의 새로운 얼굴,\n이젠 쉽고 간편하게",
+            "내가 상상하던 소설,\n이젠 쉽고 간편하게",
             style = MaterialTheme.typography.h5.copy(
                 fontWeight = FontWeight.Bold,
                 shadow = Shadow(
@@ -146,7 +159,7 @@ fun StartButton(
             .fillMaxWidth()
     ) {
         Text(
-            "새로운 책 표지 만들기",
+            "새로운 소설 만들기",
             style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold),
         )
     }

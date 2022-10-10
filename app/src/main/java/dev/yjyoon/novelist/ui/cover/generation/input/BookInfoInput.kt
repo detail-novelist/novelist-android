@@ -17,8 +17,6 @@ sealed class BookInfoInput {
             Question(1, R.string.book_info_q1, Type.TitleAndAuthor),
             Question(2, R.string.book_info_q2, Type.Genre),
             Question(3, R.string.book_info_q3, Type.SubGenre),
-            Question(4, R.string.book_info_q4, Type.Tags),
-            Question(5, R.string.book_info_q5, Type.Publisher)
         )
     }
 }

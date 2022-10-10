@@ -2,17 +2,37 @@ package dev.yjyoon.novelist.ui.cover.generation.input
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedButton
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Tag
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,11 +46,10 @@ import dev.yjyoon.novelist.ui.common.SimpleFlowRow
 import dev.yjyoon.novelist.ui.common.TextInputDialog
 
 @Composable
-fun TitleAndAuthorInput(
-    title: String,
-    author: String,
-    onEditTitle: (String) -> Unit,
-    onEditAuthor: (String) -> Unit
+fun SimpleInput(
+    value: String,
+    hintText: String,
+    onEdit: (String) -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -40,21 +59,37 @@ fun TitleAndAuthorInput(
         verticalArrangement = Arrangement.Top
     ) {
         OutlinedTextField(
-            value = title,
-            onValueChange = onEditTitle,
-            label = { Text("제목") },
+            value = value,
+            onValueChange = onEdit,
+            label = { Text(text = hintText) },
             singleLine = true,
             keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
             modifier = Modifier.fillMaxWidth()
         )
-        Spacer(modifier = Modifier.height(12.dp))
+    }
+}
+
+@Composable
+fun MultiInput(
+    value: String,
+    hintText: String,
+    onEdit: (String) -> Unit,
+) {
+    val focusManager = LocalFocusManager.current
+
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
+    ) {
         OutlinedTextField(
-            value = author,
-            onValueChange = onEditAuthor,
-            label = { Text("저자") },
-            singleLine = true,
+            value = value,
+            onValueChange = onEdit,
+            label = { Text(text = hintText) },
             keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(1f)
         )
     }
 }

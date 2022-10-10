@@ -1,7 +1,14 @@
 package dev.yjyoon.novelist.ui.bookshelf
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -33,7 +40,7 @@ fun BookShelfRow(
         modifier = Modifier.fillMaxSize()
     ) {
         Text(
-            "내 책장",
+            "내 소설",
             style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
             modifier = Modifier.padding(start = 18.dp, top = 18.dp, end = 18.dp, bottom = 12.dp)
         )
@@ -84,7 +91,7 @@ fun BookShelfRow(
 fun EmptyBook(modifier: Modifier = Modifier) {
     Box(modifier = modifier) {
         Text(
-            "아직 아무런 책이 없어요!",
+            "아직 아무런 소설이 없어요!",
             modifier = Modifier.align(Alignment.Center)
         )
     }

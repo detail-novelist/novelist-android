@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">노벨리스트</string>
-    <string name="coverist">Coverist</string>
-    <string name="book_info_q1">제목과 저자를 입력해주세요</string>
-    <string name="book_info_q2">장르를 선택해주세요</string>
-    <string name="book_info_q3">세부 장르를 선택해주세요</string>
+    <string name="coverist">Novelist</string>
+    <string name="book_info_q1">소설의 제목을 입력해주세요</string>
+    <string name="book_info_q2">소설의 장르를 입력해주세요</string>
+    <string name="book_info_q3">소설의 일부분을 작성해주세요</string>
     <string name="book_info_q4">태그를 입력해주세요</string>
     <string name="book_info_q5">출판사를 입력해주세요(선택사항)</string>
-    <string name="close_book_info_input">도서 표지 생성을 그만둘까요?</string>
-    <string name="book_info_input">도서 정보 입력</string>
+    <string name="close_book_info_input">소설 작성을 그만둘까요?</string>
+    <string name="book_info_input">소설 정보 입력</string>
 </resources>

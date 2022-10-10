@@ -5,7 +5,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.yjyoon.novelist.data.db.entity.BookEntity
 import dev.yjyoon.novelist.data.remote.model.Book
@@ -45,7 +49,7 @@ class GenerateCoverViewModel @Inject constructor(
     var bookPublisher by mutableStateOf("")
 
     lateinit var covers: List<Cover>
-    
+
     fun editTitle(title: String) {
         bookTitle = title
     }
@@ -100,11 +104,9 @@ class GenerateCoverViewModel @Inject constructor(
 
     fun isValidInput(step: Int): Boolean =
         when (step) {
-            0 -> bookTitle.trim() != "" && bookAuthor.trim() != ""
-            1 -> bookGenre != null
-            2 -> bookSubGenre != null
-            3 -> bookTags.isNotEmpty()
-            4 -> true
+            0 -> bookTitle.trim() != ""
+            1 -> bookAuthor.trim() != ""
+            2 -> true
             else -> false
         }
 
