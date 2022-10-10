@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">커버리스트</string>
+    <string name="app_name">노벨리스트</string>
     <string name="coverist">Coverist</string>
     <string name="book_info_q1">제목과 저자를 입력해주세요</string>
     <string name="book_info_q2">장르를 선택해주세요</string>
