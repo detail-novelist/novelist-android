@@ -35,13 +35,7 @@ fun GenerateCoverScreen(
             }
             GenerateCoverUiState.Done -> {
                 ShowCoverScreen(
-                    navController = navController,
-                    coverUrls = viewModel.covers.map { it.url },
-                    onConfirm = {
-                        navController.navigate("title") {
-                            popUpTo("title") { inclusive = true }
-                        }
-                    }
+                    novel = viewModel.novelResult
                 )
             }
             GenerateCoverUiState.Fail -> {

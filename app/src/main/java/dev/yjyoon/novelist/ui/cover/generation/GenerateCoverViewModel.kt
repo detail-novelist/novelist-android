@@ -12,14 +12,15 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.yjyoon.novelist.data.db.entity.BookEntity
-import dev.yjyoon.novelist.data.remote.model.Book
 import dev.yjyoon.novelist.data.remote.model.Cover
 import dev.yjyoon.novelist.data.remote.model.Genre
+import dev.yjyoon.novelist.data.remote.model.Novel
 import dev.yjyoon.novelist.exception.NonexistentTagException
 import dev.yjyoon.novelist.exception.TagAlreadyExistsException
 import dev.yjyoon.novelist.repository.BookRepository
 import dev.yjyoon.novelist.repository.CoverRepository
 import dev.yjyoon.novelist.repository.GenreRepository
+import dev.yjyoon.novelist.repository.NovelRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -29,7 +30,8 @@ import javax.inject.Inject
 class GenerateCoverViewModel @Inject constructor(
     private val genreRepository: GenreRepository,
     private val coverRepository: CoverRepository,
-    private val bookRepository: BookRepository
+    private val bookRepository: BookRepository,
+    private val novelRepository: NovelRepository
 ) : ViewModel() {
 
     private var _uiState by mutableStateOf<GenerateCoverUiState>(GenerateCoverUiState.Waiting)
@@ -49,6 +51,8 @@ class GenerateCoverViewModel @Inject constructor(
     var bookPublisher by mutableStateOf("")
 
     lateinit var covers: List<Cover>
+
+    var novelResult by mutableStateOf("")
 
     fun editTitle(title: String) {
         bookTitle = title
@@ -113,20 +117,12 @@ class GenerateCoverViewModel @Inject constructor(
     fun generateCover(context: Context) {
         _uiState = GenerateCoverUiState.Generating
 
-        val book = Book(
-            title = bookTitle.trim(),
-            author = bookAuthor.trim(),
-            genre = bookGenre!!.text,
-            subGenre = bookSubGenre!!.text,
-            tags = bookTags,
-            publisher = bookPublisher
-        )
+        val novel = Novel(bookTitle, bookAuthor, bookPublisher)
 
         viewModelScope.launch {
-            val response = coverRepository.generateCover(context, book)
+            val response = novelRepository.generateNovel(novel)
             if (response.isSuccessful && response.body() != null) {
-                covers = response.body()!!
-                bookRepository.addBook(coversToBookEntity())
+                novelResult = response.body()!!.novel
                 withContext(Dispatchers.Main) {
                     _uiState = GenerateCoverUiState.Done
                 }

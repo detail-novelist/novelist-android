@@ -11,6 +11,7 @@ import dev.yjyoon.novelist.data.db.BookDatabase
 import dev.yjyoon.novelist.data.db.dao.BookDao
 import dev.yjyoon.novelist.data.remote.api.CoverService
 import dev.yjyoon.novelist.data.remote.api.GenreService
+import dev.yjyoon.novelist.data.remote.api.NovelService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -50,6 +51,11 @@ object DataSourceModule {
     @Provides
     fun coverService(retrofit: Retrofit): CoverService =
         retrofit.create(CoverService::class.java)
+
+    @Singleton
+    @Provides
+    fun novelService(retrofit: Retrofit): NovelService =
+        retrofit.create(NovelService::class.java)
 
     @Singleton
     @Provides
