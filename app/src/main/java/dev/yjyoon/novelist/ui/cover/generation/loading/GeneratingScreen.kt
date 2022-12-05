@@ -1,6 +1,10 @@
 package dev.yjyoon.novelist.ui.cover.generation.loading
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -35,7 +39,7 @@ fun GeneratingScreen() {
                 strokeWidth = 24.dp
             )
             Text(
-                "표지를 생성 중입니다\n잠시만 기다려주세요!",
+                "소설을 작성 중입니다\n잠시만 기다려주세요!",
                 style = MaterialTheme.typography.h6,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.align(Alignment.BottomCenter)

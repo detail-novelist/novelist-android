@@ -14,16 +14,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.yjyoon.novelist.data.db.entity.BookEntity
 import dev.yjyoon.novelist.data.remote.model.Cover
 import dev.yjyoon.novelist.data.remote.model.Genre
-import dev.yjyoon.novelist.data.remote.model.Novel
 import dev.yjyoon.novelist.exception.NonexistentTagException
 import dev.yjyoon.novelist.exception.TagAlreadyExistsException
 import dev.yjyoon.novelist.repository.BookRepository
 import dev.yjyoon.novelist.repository.CoverRepository
 import dev.yjyoon.novelist.repository.GenreRepository
 import dev.yjyoon.novelist.repository.NovelRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -115,6 +112,8 @@ class GenerateCoverViewModel @Inject constructor(
         }
 
     fun generateCover(context: Context) {
+        _uiState = GenerateCoverUiState.Done
+        /*
         _uiState = GenerateCoverUiState.Generating
 
         val novel = Novel(bookTitle, bookAuthor, bookPublisher)
@@ -132,6 +131,7 @@ class GenerateCoverViewModel @Inject constructor(
                 }
             }
         }
+         */
     }
 
     private fun coversToBookEntity(): BookEntity {
